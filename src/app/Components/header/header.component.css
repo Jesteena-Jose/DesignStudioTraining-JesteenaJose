@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+.wrapper{
+    font-family: 'Lato', sans-serif;
+    background-color: rgb(5, 98, 144);
+    color:white;
+    padding: 15px;
+}
