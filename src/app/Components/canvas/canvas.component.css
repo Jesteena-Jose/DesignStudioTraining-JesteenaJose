@@ -1,1 +1,16 @@
-#canvas { border: 1px solid black;}
+#canvas {
+     border: 1px solid black;
+}
+
+.container{
+     display: flex;
+     justify-content: center;
+}
+
+.wrapper{
+     margin-top: 10px;
+     box-sizing: border-box;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}

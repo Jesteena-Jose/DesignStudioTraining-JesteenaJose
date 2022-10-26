@@ -1,5 +1,9 @@
 button{
     display: block;
     margin-bottom: 10px;
-    width: 100%;
+    width: 70%;
+}
+
+.container{
+  justify-items: center;
 }

@@ -1,15 +1,24 @@
 <app-header></app-header>
-<mat-grid-list cols="4" rowHeight="2:1">
-        <mat-grid-tile [colspan]="1" [rowspan]="4" class="shadow">
-            <app-objects-palette></app-objects-palette>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="2" [rowspan]="3">
-            <app-canvas></app-canvas>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="4" class="shadow">
-            <app-properties></app-properties>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <app-event-inspector></app-event-inspector>
-        </mat-grid-tile>
-</mat-grid-list>
+
+<table>
+    <tr>
+        <td rowspan="3" width="20%"  class="shadow"><app-objects-palette></app-objects-palette></td>
+        <td rowspan="2" width="60%"><app-canvas></app-canvas></td>
+        <td rowspan="3" width="20%" class="shadow"><app-properties></app-properties></td>
+    </tr>
+    <br>
+    <tr>
+        <td rowspan="1"><app-event-inspector></app-event-inspector></td>
+    </tr>
+</table>
+
+
+
+        <!-- <app-objects-palette></app-objects-palette>
+       
+        <app-canvas></app-canvas>
+    
+        <app-properties></app-properties>
+    
+        <app-event-inspector></app-event-inspector> -->
+    
