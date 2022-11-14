@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PropertyServiceService } from 'src/app/Services/property-service.service';
 
 @Component({
     selector: 'app-properties',
@@ -6,7 +7,21 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./properties.component.css'],
 })
 export class PropertiesComponent implements OnInit {
-    constructor() {}
+    properties: any = [];
+    message: string = '';
+    constructor(private propertyService: PropertyServiceService) {
+        this.propertyService.getPropertyValues().subscribe((data) => {
+            this.properties = data;
+        });
+        this.propertyService.getMessage().subscribe((data) => {
+            this.message = data;
+        });
+    }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.propertyService.getProperties();
+    }
+    handleClick() {
+        this.propertyService.setProperties(this.properties);
+    }
 }

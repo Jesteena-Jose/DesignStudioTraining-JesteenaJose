@@ -28,6 +28,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         BrowserModule,
         BrowserAnimationsModule,
         MaterialModule,
+        FormsModule,
         StoreModule.forRoot(canvasReducer),
         StoreDevtoolsModule.instrument({
             maxAge: 25,

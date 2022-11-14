@@ -1,15 +1,17 @@
 <h3>Properties</h3>
-<label>Stroke Width : </label>
-<mat-slider value="25"></mat-slider>
-<br>
-<label>Stroke : </label>
-<input type="color" value="#e66465">
-<br>
-<br>
-<label>Fill : </label>
-<input type="color" value="#e66465">
-<br>
-<br>
-<label>Angle : </label>
-<input type="number" value="60">
-
+<p>{{ this.message }}</p>
+<div (click)="handleClick()">
+    <label>Stroke Width : </label>
+    <mat-slider [(ngModel)]="properties[0]"></mat-slider>
+    <br />
+    <label>Stroke : </label>
+    <input type="color" [(ngModel)]="properties[1]" />
+    <br />
+    <br />
+    <label>Fill : </label>
+    <input type="color" [(ngModel)]="properties[2]" />
+    <br />
+    <br />
+    <label>Angle : </label>
+    <input type="number" [(ngModel)]="properties[3]" />
+</div>
