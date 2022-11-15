@@ -1,17 +1,14 @@
-import { State, initialState } from './canvas.state';
-import { ActionTypes } from './canvas.actions';
-import { CanvasActions } from './canvas.actions';
+import { createReducer, on } from '@ngrx/store';
+import { UpdateCanvas } from './canvas.actions';
+import { initialState } from './canvas.state';
 
-export function canvasReducer(state = initialState, action: CanvasActions): State {
-    switch (action.type) {
-        case ActionTypes.UpdateCanvas:
-            return {
-                ...state,
-                canvasArray: state.canvasArray.concat({
-                    canvas: action.payload,
-                }),
-            };
-        default:
-            return state;
-    }
-}
+export const canvasReducer = createReducer(
+    initialState,
+    on(UpdateCanvas, (state, action) => {
+        return {
+            ...state,
+            CanvasState: action.CanvasState,
+            EventType: action.EventType,
+        };
+    })
+);

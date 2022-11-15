@@ -1,13 +1,8 @@
-import { fabric } from 'fabric';
-
-export interface Canvas {
-    canvas: string;
+export interface IState {
+    CanvasState: string;
+    EventType: string;
 }
-
-export interface State {
-    canvasArray: Canvas[];
-}
-
-export const initialState: State = {
-    canvasArray: [{ canvas: JSON.stringify(new fabric.Canvas('canvas')) }],
+export const initialState: IState = {
+    CanvasState: '',
+    EventType: '',
 };
