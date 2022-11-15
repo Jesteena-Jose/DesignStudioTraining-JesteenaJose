@@ -8,6 +8,7 @@ import { NgrxServiceService } from './ngrx-service.service';
 export class EventServiceService {
     canvas!: fabric.Canvas;
     public subject = new BehaviorSubject<string>('');
+
     constructor(private ngrxService: NgrxServiceService) {}
 
     eventHandler() {
@@ -44,6 +45,7 @@ export class EventServiceService {
                 this.ngrxService.updateCanvasState(eventString);
             }
         });
+
     }
 
     eventMessage(): Observable<string> {
