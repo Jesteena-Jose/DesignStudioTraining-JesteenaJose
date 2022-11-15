@@ -1,17 +1,17 @@
 <h3>Properties</h3>
 <p>{{ this.message }}</p>
-<div (click)="handleClick()">
+<div>
     <label>Stroke Width : </label>
-    <mat-slider [(ngModel)]="properties[0]"></mat-slider>
+    <mat-slider [(ngModel)]="properties[0]" (change)="handleChange('strokeWidth', properties[0])"></mat-slider>
     <br />
     <label>Stroke : </label>
-    <input type="color" [(ngModel)]="properties[1]" />
+    <input type="color" [(ngModel)]="properties[1]" (change)="handleChange('stroke', properties[1])" />
     <br />
     <br />
     <label>Fill : </label>
-    <input type="color" [(ngModel)]="properties[2]" />
+    <input type="color" [(ngModel)]="properties[2]" (change)="handleChange('fill', properties[2])" />
     <br />
     <br />
     <label>Angle : </label>
-    <input type="number" [(ngModel)]="properties[3]" />
+    <input type="number" [(ngModel)]="properties[3]" (change)="handleChange('angle', properties[3])" />
 </div>

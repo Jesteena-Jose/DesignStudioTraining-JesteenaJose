@@ -3,7 +3,6 @@ import { fabric } from 'fabric';
 import { CanvasServiceService } from 'src/app/Services/canvas-service.service';
 import { EventServiceService } from 'src/app/Services/event-service.service';
 import { NgrxServiceService } from 'src/app/Services/ngrx-service.service';
-import { PropertyServiceService } from 'src/app/Services/property-service.service';
 
 @Component({
     selector: 'app-objects-palette',
@@ -16,8 +15,7 @@ export class ObjectsPaletteComponent implements OnInit {
     constructor(
         private canvasservice: CanvasServiceService,
         private eventservice: EventServiceService,
-        private ngrxService: NgrxServiceService,
-        private propertyService: PropertyServiceService
+        private ngrxService: NgrxServiceService
     ) {}
 
     ngOnInit(): void {
@@ -25,7 +23,6 @@ export class ObjectsPaletteComponent implements OnInit {
         this.canvasservice.canvas = this.canvas;
         this.eventservice.canvas = this.canvas;
         this.ngrxService.canvas = this.canvas;
-        this.propertyService.canvas = this.canvas;
         this.eventservice.eventHandler();
     }
 

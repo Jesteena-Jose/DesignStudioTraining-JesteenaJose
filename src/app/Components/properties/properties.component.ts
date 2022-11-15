@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PropertyServiceService } from 'src/app/Services/property-service.service';
+import { EventServiceService } from 'src/app/Services/event-service.service';
 
 @Component({
     selector: 'app-properties',
@@ -9,19 +9,19 @@ import { PropertyServiceService } from 'src/app/Services/property-service.servic
 export class PropertiesComponent implements OnInit {
     properties: any = [];
     message: string = '';
-    constructor(private propertyService: PropertyServiceService) {
-        this.propertyService.getPropertyValues().subscribe((data) => {
+    constructor(private eventService: EventServiceService) {
+        this.eventService.getPropertyValues().subscribe((data) => {
             this.properties = data;
         });
-        this.propertyService.getMessage().subscribe((data) => {
+        this.eventService.getMessage().subscribe((data) => {
             this.message = data;
         });
     }
 
     ngOnInit(): void {
-        this.propertyService.getProperties();
+        this.eventService.eventHandler();
     }
-    handleClick() {
-        this.propertyService.setProperties(this.properties);
+    handleChange(property: string, propertyValue: string) {
+        this.eventService.setProperties(property, propertyValue);
     }
 }
