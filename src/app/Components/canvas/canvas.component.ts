@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgrxServiceService } from 'src/app/Services/ngrx-service.service';
 
 @Component({
     selector: 'app-canvas',
@@ -7,9 +6,7 @@ import { NgrxServiceService } from 'src/app/Services/ngrx-service.service';
     styleUrls: ['./canvas.component.css'],
 })
 export class CanvasComponent implements OnInit {
-    constructor(private ngrxService: NgrxServiceService) {}
+    constructor() {}
 
-    ngOnInit(): void {
-        this.ngrxService.getUpdate();
-    }
+    ngOnInit(): void {}
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { NgrxServiceService } from './ngrx-service.service';
 
 @Injectable({
     providedIn: 'root',
@@ -7,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class EventServiceService {
     canvas!: fabric.Canvas;
     public subject = new BehaviorSubject<string>('');
-    constructor() {}
+    constructor(private ngrxService: NgrxServiceService) {}
 
     eventHandler() {
         let shapes = { rect: 'Rectangle', triangle: 'Triangle', circle: 'Circle' };
@@ -15,6 +16,8 @@ export class EventServiceService {
         this.canvas.on('object:added', (options: any) => {
             if (options.target) {
                 this.subject.next(shapes[options.target.type as keyof typeof shapes] + ' was added');
+                var eventString = 'Added ' + shapes[options.target.type as keyof typeof shapes];
+                this.ngrxService.updateCanvasState(eventString);
             }
         });
         //object translate
@@ -33,6 +36,12 @@ export class EventServiceService {
         this.canvas.on('object:rotating', (options: any) => {
             if (options.target) {
                 this.subject.next(shapes[options.target.type as keyof typeof shapes] + ' was rotated');
+            }
+        });
+        this.canvas.on('object:modified', (options) => {
+            if (options.target) {
+                var eventString = 'Modified ' + shapes[options.target.type as keyof typeof shapes];
+                this.ngrxService.updateCanvasState(eventString);
             }
         });
     }

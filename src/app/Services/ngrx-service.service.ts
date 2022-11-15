@@ -17,20 +17,4 @@ export class NgrxServiceService {
             })
         );
     }
-
-    getUpdate() {
-        let shapes = { rect: 'Rectangle', triangle: 'Triangle', circle: 'Circle' };
-        this.canvas.on('object:modified', (options) => {
-            if (options.target) {
-                var eventString = 'Modified ' + shapes[options.target.type as keyof typeof shapes];
-                this.updateCanvasState(eventString);
-            }
-        });
-        this.canvas.on('object:added', (options) => {
-            if (options.target) {
-                var eventString = 'Added ' + shapes[options.target.type as keyof typeof shapes];
-                this.updateCanvasState(eventString);
-            }
-        });
-    }
 }
