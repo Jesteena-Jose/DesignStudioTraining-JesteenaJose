@@ -8,6 +8,7 @@ import { NgrxServiceService } from './ngrx-service.service';
 export class EventServiceService {
     canvas!: fabric.Canvas;
     public subject = new BehaviorSubject<string>('');
+
     constructor(private ngrxService: NgrxServiceService) {}
 
     eventHandler() {
@@ -16,28 +17,32 @@ export class EventServiceService {
         this.canvas.on('object:added', (options: any) => {
             if (options.target) {
                 this.subject.next(shapes[options.target.type as keyof typeof shapes] + ' was added');
-                this.ngrxService.UpdateCanvas(JSON.stringify(this.canvas));
+                var eventString = 'Added ' + shapes[options.target.type as keyof typeof shapes];
+                this.ngrxService.updateCanvasState(eventString);
             }
         });
         //object translate
         this.canvas.on('object:moving', (options: any) => {
             if (options.target) {
                 this.subject.next(shapes[options.target.type as keyof typeof shapes] + ' was translated');
-                this.ngrxService.UpdateCanvas(JSON.stringify(this.canvas));
             }
         });
         //object scale
         this.canvas.on('object:scaling', (options: any) => {
             if (options.target) {
                 this.subject.next(shapes[options.target.type as keyof typeof shapes] + ' was scaled');
-                this.ngrxService.UpdateCanvas(JSON.stringify(this.canvas));
             }
         });
         //object rotate
         this.canvas.on('object:rotating', (options: any) => {
             if (options.target) {
                 this.subject.next(shapes[options.target.type as keyof typeof shapes] + ' was rotated');
-                this.ngrxService.UpdateCanvas(JSON.stringify(this.canvas));
+            }
+        });
+        this.canvas.on('object:modified', (options) => {
+            if (options.target) {
+                var eventString = 'Modified ' + shapes[options.target.type as keyof typeof shapes];
+                this.ngrxService.updateCanvasState(eventString);
             }
         });
     }

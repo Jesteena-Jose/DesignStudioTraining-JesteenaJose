@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { UpdateCanvas } from '../Store/canvas.actions';
-import { Store, select } from '@ngrx/store';
-import { State } from '../Store/canvas.state';
-import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
 export class NgrxServiceService {
-    state$: Observable<State>;
+    canvas!: fabric.Canvas;
+    constructor(protected store: Store<{ canvasStore: '' }>) {}
 
-    constructor(private canvasStore: Store<{ State: any }>) {
-        this.state$ = this.canvasStore.pipe(select('State'));
-    }
-
-    UpdateCanvas(newCanvas: string) {
-        this.canvasStore.dispatch(new UpdateCanvas(newCanvas));
+    updateCanvasState(eventName: string) {
+        this.store.dispatch(
+            UpdateCanvas({
+                CanvasState: JSON.stringify(this.canvas),
+                EventType: eventName,
+            })
+        );
     }
 }
