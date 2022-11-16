@@ -18,9 +18,7 @@ export class PropertiesComponent implements OnInit {
         });
     }
 
-    ngOnInit(): void {
-        this.eventService.eventHandler();
-    }
+    ngOnInit(): void {}
     handleChange(property: string, propertyValue: string) {
         this.eventService.setProperties(property, propertyValue);
     }
