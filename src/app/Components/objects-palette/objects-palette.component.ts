@@ -4,7 +4,6 @@ import { CanvasServiceService } from 'src/app/Services/canvas-service.service';
 import { EventServiceService } from 'src/app/Services/event-service.service';
 import { NgrxServiceService } from 'src/app/Services/ngrx-service.service';
 
-
 @Component({
     selector: 'app-objects-palette',
     templateUrl: './objects-palette.component.html',
@@ -18,7 +17,6 @@ export class ObjectsPaletteComponent implements OnInit {
         private eventservice: EventServiceService,
         private ngrxService: NgrxServiceService
     ) {}
-
 
     ngOnInit(): void {
         this.canvas = new fabric.Canvas('canvas');
