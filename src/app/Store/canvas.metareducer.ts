@@ -1,7 +1,6 @@
 import { ActionReducer, MetaReducer } from '@ngrx/store';
 import { UndoRedoServiceService } from '../Services/undo-redo-service.service';
-import { State } from './canvas.state';
-import { CanvasActions, ActionTypes, UndoCanvasBoolean } from './canvas.actions';
+import { CanvasActions, ActionTypes, UndoRedoCanvasBoolean } from './canvas.actions';
 import { AppState } from '.';
 
 export function undoRedoMetaReducer(undoRedoService: UndoRedoServiceService): MetaReducer<AppState, CanvasActions> {
@@ -15,17 +14,17 @@ export function undoRedoMetaReducer(undoRedoService: UndoRedoServiceService): Me
                     break;
                 case ActionTypes.UndoCanvas:
                     modifiedState = undoRedoService.undoOperation(state?.CanvasList.canvasState) as string;
-                    modifiedAction = new UndoCanvasBoolean({
+                    modifiedAction = new UndoRedoCanvasBoolean({
                         canvasState: modifiedState,
-                        canvasActionType: 'UndoCanvasBoolean',
+                        canvasActionType: 'UndoRedoCanvasBoolean',
                         CanvasBool: true,
                     });
                     break;
                 case ActionTypes.RedoCanvas:
                     modifiedState = undoRedoService.redoOperation(state?.CanvasList.canvasState) as string;
-                    modifiedAction = new UndoCanvasBoolean({
+                    modifiedAction = new UndoRedoCanvasBoolean({
                         canvasState: modifiedState,
-                        canvasActionType: 'UndoCanvasBoolean',
+                        canvasActionType: 'UndoRedoCanvasBoolean',
                         CanvasBool: true,
                     });
                     break;

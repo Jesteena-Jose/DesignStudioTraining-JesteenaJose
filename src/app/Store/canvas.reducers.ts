@@ -10,15 +10,7 @@ export function canvasReducer(state = initialState, action: CanvasActions): Stat
                 canvasActionType: action.payload.canvasActionType,
                 CanvasBool: action.payload.CanvasBool,
             };
-        case ActionTypes.UndoCanvas:
-            return {
-                ...state,
-            };
-        case ActionTypes.RedoCanvas:
-            return {
-                ...state,
-            };
-        case ActionTypes.UndoCanvasBoolean:
+        case ActionTypes.UndoRedoCanvasBoolean:
             return {
                 ...state,
                 canvasState: action.payload.canvasState,

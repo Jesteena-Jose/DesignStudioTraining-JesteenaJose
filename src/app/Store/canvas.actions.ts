@@ -4,7 +4,7 @@ import { State } from './canvas.state';
 export enum ActionTypes {
     UpdateCanvas = '[Canvas Component] Update_Canvas',
     UndoCanvas = '[Canvas Component] Undo_Canvas',
-    UndoCanvasBoolean = '[Canvas Component] Undo_Canvas_Bool',
+    UndoRedoCanvasBoolean = '[Canvas Component] Undo_Canvas_Bool',
     RedoCanvas = '[Canvas Component] Redo_Canvas',
 }
 
@@ -18,8 +18,8 @@ export class UndoCanvas implements Action {
     constructor() {}
 }
 
-export class UndoCanvasBoolean implements Action {
-    public readonly type = ActionTypes.UndoCanvasBoolean;
+export class UndoRedoCanvasBoolean implements Action {
+    public readonly type = ActionTypes.UndoRedoCanvasBoolean;
     constructor(public payload: State) {}
 }
 
@@ -28,4 +28,4 @@ export class RedoCanvas implements Action {
     constructor() {}
 }
 
-export type CanvasActions = UpdateCanvas | UndoCanvas | RedoCanvas | UndoCanvasBoolean;
+export type CanvasActions = UpdateCanvas | UndoCanvas | RedoCanvas | UndoRedoCanvasBoolean;
