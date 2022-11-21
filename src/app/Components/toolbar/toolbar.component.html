@@ -1,4 +1,4 @@
 <div>
-    <button mat-stroked-button color="primary" (click)="handleundo()">Undo</button>
-    <button mat-stroked-button color="primary">Redo</button>
+    <button mat-stroked-button color="primary" (click)="handleundo()" [disabled]="!this.undoEnable">Undo</button>
+    <button mat-stroked-button color="primary" (click)="handleredo()" [disabled]="!this.redoEnable">Redo</button>
 </div>

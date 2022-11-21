@@ -21,8 +21,6 @@ export class EventServiceService {
         this.canvas.on('object:added', (options: any) => {
             if (options.target) {
                 this.subject.next(shapes[options.target.type as keyof typeof shapes] + ' was added');
-                var eventString = 'Added ' + shapes[options.target.type as keyof typeof shapes];
-                this.ngrxService.updateCanvasState(eventString);
             }
         });
         //object translate
@@ -41,12 +39,6 @@ export class EventServiceService {
         this.canvas.on('object:rotating', (options: any) => {
             if (options.target) {
                 this.subject.next(shapes[options.target.type as keyof typeof shapes] + ' was rotated');
-            }
-        });
-        this.canvas.on('object:modified', (options) => {
-            if (options.target) {
-                var eventString = 'Modified ' + shapes[options.target.type as keyof typeof shapes];
-                this.ngrxService.updateCanvasState(eventString);
             }
         });
         this.canvas.on('selection:created', (options) => {
@@ -81,6 +73,8 @@ export class EventServiceService {
         });
         this.canvas.on('object:modified', (options) => {
             if (options.target) {
+                var eventString = 'Modified ' + shapes[options.target.type as keyof typeof shapes];
+                this.ngrxService.updateCanvasState(eventString);
                 if (this.flag == 0) {
                     this.properties[3] = options.target.get('angle');
                     this.propertysubject.next(this.properties);
@@ -113,6 +107,7 @@ export class EventServiceService {
                 this.canvas.getActiveObject().set({ angle: parseInt(propertyValue) });
             }
             this.canvas.renderAll();
+            this.ngrxService.updateCanvasState('Modified Object');
         }
     }
 }

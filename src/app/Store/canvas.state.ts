@@ -7,7 +7,7 @@ export interface State {
 }
 
 export const initialState: State = {
-    canvasState: JSON.stringify(new fabric.Canvas('canvas')),
+    canvasState: JSON.stringify(new fabric.Canvas('canvas', {})),
     canvasActionType: '',
     CanvasBool: false,
 };

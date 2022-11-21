@@ -4,7 +4,7 @@ import { CanvasServiceService } from 'src/app/Services/canvas-service.service';
 import { EventServiceService } from 'src/app/Services/event-service.service';
 import { NgrxServiceService } from 'src/app/Services/ngrx-service.service';
 import { select, Store } from '@ngrx/store';
-import { getCanvas, undoCanvas } from 'src/app/Store/canvas.selector';
+import { undoCanvas } from 'src/app/Store/canvas.selector';
 
 @Component({
     selector: 'app-objects-palette',
@@ -13,9 +13,6 @@ import { getCanvas, undoCanvas } from 'src/app/Store/canvas.selector';
 })
 export class ObjectsPaletteComponent implements OnInit {
     canvas!: fabric.Canvas;
-    canvasedit: any;
-    canvasedit$ = this.store.pipe(select(getCanvas));
-    canvasundo: any;
     canvasundo$ = this.store.pipe(select(undoCanvas));
 
     constructor(
@@ -24,14 +21,9 @@ export class ObjectsPaletteComponent implements OnInit {
         private ngrxService: NgrxServiceService,
         private store: Store
     ) {
-        this.canvasedit$.subscribe((data) => {
-            this.canvasedit = data;
-        });
         this.canvasundo$.subscribe((data) => {
-            this.canvasundo = data;
-            console.log(data);
             if (data != null) {
-                this.canvas.loadFromJSON(this.canvasundo, () => {});
+                this.canvas.loadFromJSON(data, () => {});
             }
         });
     }

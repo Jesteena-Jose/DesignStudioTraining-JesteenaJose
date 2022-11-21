@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { fabric } from 'fabric';
+import { NgrxServiceService } from './ngrx-service.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class CanvasServiceService {
     canvas!: fabric.Canvas;
-    constructor() {}
+    constructor(private ngrxService: NgrxServiceService) {}
 
     drawRectangle() {
         let rectangle = new fabric.Rect({
@@ -18,6 +19,7 @@ export class CanvasServiceService {
             stroke: '#000000',
         });
         this.canvas.add(rectangle);
+        this.ngrxService.updateCanvasState('Added rectangle');
     }
     drawTriangle() {
         let triangle = new fabric.Triangle({
@@ -29,6 +31,7 @@ export class CanvasServiceService {
             stroke: '#000000',
         });
         this.canvas.add(triangle);
+        this.ngrxService.updateCanvasState('Added triangle');
     }
     drawCircle() {
         let circle = new fabric.Circle({
@@ -39,5 +42,6 @@ export class CanvasServiceService {
             stroke: '#000000',
         });
         this.canvas.add(circle);
+        this.ngrxService.updateCanvasState('Added circle');
     }
 }

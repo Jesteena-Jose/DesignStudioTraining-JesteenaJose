@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { UndoCanvas, UpdateCanvas } from '../Store/canvas.actions';
+import { RedoCanvas, UndoCanvas, UpdateCanvas } from '../Store/canvas.actions';
 
 @Injectable({
     providedIn: 'root',
@@ -15,5 +15,9 @@ export class NgrxServiceService {
 
     undoCanvasState() {
         this.store.dispatch(new UndoCanvas());
+    }
+
+    redoCanvasState() {
+        this.store.dispatch(new RedoCanvas());
     }
 }
