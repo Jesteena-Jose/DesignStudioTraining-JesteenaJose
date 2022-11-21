@@ -15,6 +15,7 @@ export class UndoRedoServiceService {
     addState(state: any) {
         this.undoStack.push(state);
         this.redoStack = [];
+        this.redoEnable.next(false);
         this.undoEnable.next(true);
     }
 
