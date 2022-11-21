@@ -1,14 +1,14 @@
-import { createReducer, on } from '@ngrx/store';
-import { UpdateCanvas } from './canvas.actions';
-import { initialState } from './canvas.state';
+import { State, initialState } from './canvas.state';
+import { ActionTypes, CanvasActions } from './canvas.actions';
 
-export const canvasReducer = createReducer(
-    initialState,
-    on(UpdateCanvas, (state, action) => {
+export function canvasReducer(state = initialState, action: CanvasActions): State {
+    if (action.type === ActionTypes.UpdateCanvas || action.type === ActionTypes.UndoRedoCanvasBoolean) {
         return {
             ...state,
-            CanvasState: action.CanvasState,
-            EventType: action.EventType,
+            canvasState: action.payload.canvasState,
+            canvasActionType: action.payload.canvasActionType,
+            CanvasBool: action.payload.CanvasBool,
         };
-    })
-);
+    }
+    return state;
+}
